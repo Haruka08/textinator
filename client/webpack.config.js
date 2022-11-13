@@ -24,23 +24,22 @@ module.exports = () => {
         title: 'Webpack Plugin',
       }),
       new MiniCssExtractPlugin(),
-      new WebpackPwaManifest({
-        name: 'textinator',
-        short_name: 'text',
-        description: 'Note creater app!',
-        // background_color: '#ffffff',
-        // crossorigin: 'use-credentials', //can be null, use-credentials or anonymous
-        icons: [
-          {
-            src: path.resolve('src/images/logo.png'),
-            sizes: [96, 128, 192, 256, 384, 512]
-          }
-        ]
-      }),
       new InjectManifest({
         swSrc: './src-sw.js',
         swDest: 'service-worker.js',
       }), 
+      new WebpackPwaManifest({
+        short_name: 'text',
+        name: 'textinator',
+        icons: [{
+            src: path.resolve('./src/images/logo.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('./images','icons')
+          }],
+        start_url: './',
+        publicPath: './',
+        description: 'Note creater app!',
+      })
     ],
 
     module: {
