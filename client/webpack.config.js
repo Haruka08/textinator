@@ -26,7 +26,7 @@ module.exports = () => {
       new MiniCssExtractPlugin(),
       new InjectManifest({
         swSrc: './src-sw.js',
-        swDest: 'service-worker.js',
+        swDest: 'src-sw.js',
       }), 
       new WebpackPwaManifest({
         short_name: 'text',
@@ -34,8 +34,10 @@ module.exports = () => {
         icons: [{
             src: path.resolve('./src/images/logo.png'),
             sizes: [96, 128, 192, 256, 384, 512],
-            destination: path.join('./images','icons')
+            destination: path.join('./assets','icons')
           }],
+        fingerprints: false,
+        inject: true,
         start_url: './',
         publicPath: './',
         description: 'Note creater app!',
